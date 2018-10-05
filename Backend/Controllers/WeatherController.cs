@@ -24,7 +24,7 @@ namespace Backend.Controllers
         [Route("{country}/{city}")]
         public IActionResult Get(string country, string city)
         {
-            return Ok(_weatherService.Get(country, city));
+            return Ok(_weatherService.GetAsync(country, city));
         }
     }
 }

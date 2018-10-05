@@ -1,7 +1,9 @@
-﻿namespace Backend.Services.Weather
+﻿using System.Threading.Tasks;
+
+namespace Backend.Services.Weather
 {
     public interface IWeatherService
     {
-        Weather Get(string country, string city);
+        Task<Weather> GetAsync(string country, string city);
     }
 }
