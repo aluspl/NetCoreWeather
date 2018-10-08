@@ -13,22 +13,13 @@ namespace Backend.Services.Weather
     public class WeatherService : IWeatherService
     {
         private readonly IYahooAPI Forecast;
-        private readonly ILocationService _location;
 
-
-        //public static string Url = "https://api.openweathermap.org/data/2.5/";
-        //private const string Url = "https://api.darksky.net/";
         private const string Url = "https://query.yahooapis.com/v1/public";
 
-        private string KEY;
 
-        public WeatherService(IConfiguration configuration, ILocationService location)
+        public WeatherService()
         {
-            KEY = configuration.GetValue<string>("DarkSkyKey");
-            //Forecast = RestClient.For<IOpenWeatherMap>(Url);
             Forecast = RestClient.For<IYahooAPI>(Url);
-            _location = location;
-
         }
 
         public async Task<Weather> GetAsync(string country, string city)
