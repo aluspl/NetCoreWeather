@@ -20,6 +20,7 @@ export class RestService {
   GetWeather(City: string, Country: string): Observable<Weather>
   {
     const url = `${WeatherApi}/${Country}/${City}`;
+    httpOptions.headers.append('Access-Control-Allow-Origin','*');
 
     return this.http
           .get<Weather>(url, httpOptions)

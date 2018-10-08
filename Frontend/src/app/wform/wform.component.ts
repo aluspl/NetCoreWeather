@@ -15,7 +15,7 @@ export class WFormComponent implements OnInit {
   Query = new Query();
   Weather: Weather;
   submitted = false;
-
+  IsResponse = false;
   ngOnInit() {
   }
   onSubmit() { 
@@ -28,6 +28,7 @@ export class WFormComponent implements OnInit {
         .pipe(map(
             data=>{
               console.log(data);
+              this.IsResponse= true;
               return data;
             }))
         .subscribe(p=>this.Weather=p);

@@ -14,3 +14,10 @@ API Test on Swagger
 ## FRONTEND
 
 - Angular 6
+
+## RUN
+
+Angular:  frontend  ng serve
+Backend:  dotnet run
+
+Swagger: https://localhost:44312/swagger/index.html

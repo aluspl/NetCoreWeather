@@ -57,9 +57,13 @@ namespace WeatherOSApp
             }
 
             app.UseHttpsRedirection();
+            app.UseCors(builder => builder
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .AllowCredentials());
             app.UseMvc();
             app.UseSwaggerDocs();
-
             applicationLifetime.ApplicationStopped.Register(() => Container.Dispose());
 
         }

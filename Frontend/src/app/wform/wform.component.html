@@ -1,18 +1,24 @@
 <div>
-  {{diagnostic}}
   <h1>Show Weather</h1>
   <form #weatherForm="ngForm">
     <div class="form-group">
       <label for="country">Country</label>
       <input type="text" class="form-control" [(ngModel)]="Query.country" name="country" required >
- 
+    </div>
+    <div class="form-group">
+
       <label for="city">City</label>
       <input type="text" class="form-control" [(ngModel)]="Query.city" name="city" required>
     </div>
     <button type="submit"   (click)="onSubmit()" class="btn btn-success">Search</button>
 
   </form>
-  <div class="Response">
-    {{Weather}}
-  </div>
+  
+  <ul  class="list-group" *ngIf="IsResponse">
+    <li class="list-group-item"><b>City:</b> {{Weather.location.city}}</li>
+    <li class="list-group-item"><b>Country:</b> {{Weather.location.country}}</li>
+    <li class="list-group-item"><b>Temperature:</b> {{Weather.temperature.value}}</li>
+    <li class="list-group-item"><b>Format:</b> {{Weather.temperature.format}}</li>
+    <li class="list-group-item"><b>Humidity:</b> {{Weather.humidity}}</li>
+  </ul>
 </div>
