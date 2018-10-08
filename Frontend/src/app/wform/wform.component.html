@@ -1,0 +1,18 @@
+<div>
+  {{diagnostic}}
+  <h1>Show Weather</h1>
+  <form #weatherForm="ngForm">
+    <div class="form-group">
+      <label for="country">Country</label>
+      <input type="text" class="form-control" [(ngModel)]="Query.country" name="country" required >
+ 
+      <label for="city">City</label>
+      <input type="text" class="form-control" [(ngModel)]="Query.city" name="city" required>
+    </div>
+    <button type="submit"   (click)="onSubmit()" class="btn btn-success">Search</button>
+
+  </form>
+  <div class="Response">
+    {{Weather}}
+  </div>
+</div>

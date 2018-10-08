@@ -51,7 +51,11 @@ namespace Backend.Services.Weather
         public string country { get; set; }
         public string region { get; set; }
     }
-
+    public class Temperature
+    {
+        public int value { get; set; }
+        public string format { get; set; }
+    }
     public class Wind
     {
         public string chill { get; set; }

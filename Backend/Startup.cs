@@ -32,6 +32,7 @@ namespace WeatherOSApp
         {
             services.AddMvc();
             services.AddSwaggerDocs();
+            services.AddCors();
 
             var builder = new ContainerBuilder();
             builder.RegisterAssemblyTypes(Assembly.GetEntryAssembly())
@@ -57,6 +58,7 @@ namespace WeatherOSApp
 
             app.UseHttpsRedirection();
             app.UseMvc();
+            app.UseSwaggerDocs();
 
             applicationLifetime.ApplicationStopped.Register(() => Container.Dispose());
 

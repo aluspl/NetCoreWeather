@@ -30,9 +30,5 @@ namespace Backend.Services.Weather
         }
     }
 
-    public class Temperature
-    {
-        public int value { get;  set; }
-        public string format { get;  set; }
-    }
+    
 }

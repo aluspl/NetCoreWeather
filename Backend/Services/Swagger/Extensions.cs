@@ -15,8 +15,8 @@ namespace Backend.Services.Swagger
 
                 return services.AddSwaggerGen(c =>
                 {
-                    c.SwaggerDoc("Weather", new Info { Title = "Weather", Version = "v1" });                  
-                    });
+                    c.SwaggerDoc("v1", new Info { Title = "Weather", Version = "v1" });                  
+                });
             }
         }
 
@@ -28,7 +28,7 @@ namespace Backend.Services.Swagger
 
             return builder.UseSwaggerUI(c =>
                 {
-                    c.SwaggerEndpoint($"/swagger/swagger.json", "Weather");
+                    c.SwaggerEndpoint($"/swagger/v1/swagger.json", "Weather");
                     c.RoutePrefix = "swagger";
                 });
         }
