@@ -40,7 +40,7 @@ namespace Backend.Test
         {
             var mockup = Substitute.For<IWeatherApi>();
 
-            mockup.GetWeatherAsync(country, city).Returns(MockRoot(IsNull, country, city));
+            mockup.GetWeatherAsync(country, city).Returns(CreatedMockRoot(IsNull, country, city));
             var weatherService = new WeatherService(mockup);
             return weatherService;
         }

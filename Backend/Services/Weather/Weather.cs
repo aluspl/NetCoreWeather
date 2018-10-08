@@ -25,13 +25,9 @@ namespace Backend.Services.Weather
                     returnWeather.humidity = weather.query.results.channel.atmosphere.humidity;
                 }
 
-                if (weather.query.results.channel.item != null || weather.query.results.channel.item.forecast.Length>0)
+                if (weather.query.results.channel.item != null )
                 {
-                    returnWeather.temperature = new Temperature
-                    {
-                        value = ToCelcius(weather.query.results.channel.item.forecast[0].high),
-                        format = "Celcius"
-                    };
+                    returnWeather.temperature = GetTemperature(weather.query.results.channel.item);
                 }
                 return returnWeather;
             }
@@ -41,7 +37,15 @@ namespace Backend.Services.Weather
                 throw;
             }
         }
-
+        private static Temperature GetTemperature(Item item)
+        {
+            if (item.forecast == null || item.forecast.Length == 0) return null;
+            return new Temperature
+            {
+                value = ToCelcius(item.forecast[0].high),
+                format = "Celcius"
+            };
+        }
         private static double ToCelcius(double f)
         {
             double c = 5.0 / 9.0 * (f - 32);
