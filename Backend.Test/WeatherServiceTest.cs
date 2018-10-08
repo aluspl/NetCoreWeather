@@ -19,35 +19,26 @@ namespace Backend.Test
         [InlineData("Poland", "Wroclaw")]
         [InlineData("Poland", "Gdansk")]
         [InlineData("Germany", "Berlin")]
-        [InlineData(null, null)]
-
-        public async void TestForNotNullData(string country, string city)
+        public async Task  TestForNotNullData(string country, string city)
         {
-            WeatherService weatherService = GetService(false, country, city);
+            WeatherService weatherService = MockData.GetService(false, country, city);
             var response = await weatherService.GetAsync(country, city);
             Assert.NotNull(response);
         }
 
-        private static WeatherService GetService(bool IsNull, string country, string city)
-        {
-            var mockup = Substitute.For<IWeatherApi>();
-            mockup.GetWeatherAsync(MockData.CreateQuery(country, city)).Returns(MockData.MockRoot(IsNull, country, city));
-            var weatherService = new WeatherService(mockup);
-            return weatherService;
-        }
+        
 
         [Theory]
         [InlineData("Poland", "Wroclaw")]
         [InlineData("Poland", "Gdansk")]
         [InlineData("Germany", "Berlin")]
-        [InlineData(null, null)]
-
-        public async void TestForNullData(string country, string city)
+        public async Task TestForNullData(string country, string city)
         {
-            WeatherService weatherService = GetService(true, country, city);
+            WeatherService weatherService = MockData.GetService(false, country, city);
 
             var response = await weatherService.GetAsync(country, city);
-            Assert.Null(response);
+            Assert.NotNull(response);
         }
+       
     }
 }
