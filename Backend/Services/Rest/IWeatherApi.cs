@@ -1,6 +1,6 @@
 ﻿namespace Backend.Services.Weather
 {
-    public class Temperature
+    internal interface IWeatherApi
     {
     }
 }

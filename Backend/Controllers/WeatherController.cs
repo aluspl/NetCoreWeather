@@ -19,12 +19,25 @@ namespace Backend.Controllers
             _weatherService = weatherService; 
         }
 
-
+        [HttpGet]
+        public IActionResult Get()
+        {
+            return Ok();
+        }
         [HttpGet]
         [Route("{country}/{city}")]
-        public IActionResult Get(string country, string city)
+        public async Task<IActionResult> GetAsync(string country, string city)
         {
-            return Ok(_weatherService.GetAsync(country, city));
+            try
+            {
+                var value = await _weatherService.GetAsync(country, city);
+                return Ok(value);
+            }
+            catch(Exception e)
+            {
+                return BadRequest(e);
+            }
+            
         }
     }
 }
