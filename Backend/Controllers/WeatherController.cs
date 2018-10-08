@@ -20,11 +20,6 @@ namespace Backend.Controllers
         }
 
         [HttpGet]
-        public IActionResult Get()
-        {
-            return Ok();
-        }
-        [HttpGet]
         [Route("{country}/{city}")]
         public async Task<IActionResult> GetAsync(string country, string city)
         {

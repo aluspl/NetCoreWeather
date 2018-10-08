@@ -12,14 +12,13 @@ namespace Backend.Services.Weather
 {
     public class WeatherService : IWeatherService
     {
-        private readonly IYahooAPI Forecast;
-
+        private readonly IWeatherApi WeatherAPI;
         private const string Url = "https://query.yahooapis.com/v1/public";
 
 
-        public WeatherService()
+        public WeatherService(IWeatherApi weatherApi)
         {
-            Forecast = RestClient.For<IYahooAPI>(Url);
+            WeatherAPI = weatherApi;
         }
 
         public async Task<Weather> GetAsync(string country, string city)
@@ -27,7 +26,7 @@ namespace Backend.Services.Weather
             try
             {
                 var query = CreateQuery(country, city);
-                var weather = await Forecast.GetWeatherAsync(query);
+                var weather = await WeatherAPI.GetWeatherAsync(query);
                 return Weather.Get(weather);
             }
             catch (System.Exception e)
@@ -38,7 +37,7 @@ namespace Backend.Services.Weather
            
         }
 
-        private string CreateQuery(string country, string city)
+        public string CreateQuery(string country, string city)
         {
             return $"q=select * from weather.forecast where woeid in (select woeid from geo.places(1) where text=\"{country}, {city} \")&format=json";
         }

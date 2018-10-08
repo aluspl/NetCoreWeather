@@ -2,7 +2,7 @@
 
 namespace Backend.Services.Weather
 {
-    public class Rootobject
+    public class RootData
     {
         public Query query { get; set; }
     }
@@ -53,7 +53,7 @@ namespace Backend.Services.Weather
     }
     public class Temperature
     {
-        public int value { get; set; }
+        public double value { get; set; }
         public string format { get; set; }
     }
     public class Wind
@@ -117,8 +117,8 @@ namespace Backend.Services.Weather
         public string code { get; set; }
         public string date { get; set; }
         public string day { get; set; }
-        public int high { get; set; }
-        public int low { get; set; }
+        public double high { get; set; }
+        public double low { get; set; }
         public string text { get; set; }
     }
 }

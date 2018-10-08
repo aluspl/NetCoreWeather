@@ -1,6 +1,11 @@
-﻿namespace Backend.Services.Weather
+﻿using RestEase;
+using System.Threading.Tasks;
+
+namespace Backend.Services.Weather
 {
-    internal interface IWeatherApi
+    public interface IWeatherApi
     {
+        [Get("yql")]
+        Task<RootData> GetWeatherAsync([RawQueryString]string query);
     }
 }
