@@ -92,6 +92,14 @@ namespace Backend.Test
             yield return new object[] { 45, 7};
             yield return new object[] { 40, 4};
             yield return new object[] { 35, 1};
+            yield return new object[] { 30, -1 };
+            yield return new object[] { 25, -3 };
+            yield return new object[] { 20, -6 };
+            yield return new object[] { 15, -9 };
+            yield return new object[] { 10, -12 };
+            yield return new object[] { 5, -15 };
+            yield return new object[] { 0, -17 };
+
         }
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();

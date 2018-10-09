@@ -29,5 +29,6 @@ namespace Backend.Services.Weather
             return CustomMessage;
         }
         public string CustomMessage { get;  set; }
+        public string Code { get;  set; }
     }
 }

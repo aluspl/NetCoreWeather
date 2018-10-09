@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Autofac;
 using Autofac.Core;
 using Autofac.Extensions.DependencyInjection;
+using Backend.Services.Common;
 using Backend.Services.Rest;
 using Backend.Services.Swagger;
 using Backend.Services.Weather;
@@ -67,6 +68,8 @@ namespace WeatherOSApp
                 .AllowAnyMethod()
                 .AllowAnyHeader()
                 .AllowCredentials());
+            app.UseErrorHandler();
+
             app.UseMvc();
             app.UseSwaggerDocs();
             applicationLifetime.ApplicationStopped.Register(() => Container.Dispose());

@@ -16,8 +16,6 @@ namespace Backend.Test
             MockData.CreatedMockRoot(false, "Poland","Gdansk"),
             MockData.CreatedMockRoot(false, "Poland","Wroclaw"),
             MockData.CreatedMockRoot(false, "Poland","Rzeszow"),
-
-
         };
         private static RootData[] RootDatasWithNull = new RootData[]
         {
