@@ -1,6 +1,7 @@
 ﻿using Backend.Services.Weather;
 using NSubstitute;
 using RestEase;
+using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xunit;
@@ -82,5 +83,17 @@ namespace Backend.Test
                 Add(t1);
             }
         }
+    }
+    public class FToCTestData : IEnumerable<object[]>
+    {
+        public IEnumerator<object[]> GetEnumerator()
+        {
+            yield return new object[] { 50, 10};
+            yield return new object[] { 45, 7};
+            yield return new object[] { 40, 4};
+            yield return new object[] { 35, 1};
+        }
+
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }
 }

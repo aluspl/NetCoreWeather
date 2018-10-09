@@ -11,25 +11,22 @@ namespace Backend.Test
                 new Item { title = "Weather Item2", forecast = new Forecast[] { new Forecast { high=50, low=40 }, new Forecast { high = 40, low = 30 } } }
         };
         private static RootData[] RootDatas = new RootData[]
-      {
+        {
 
             MockData.CreatedMockRoot(false, "Poland","Gdansk"),
             MockData.CreatedMockRoot(false, "Poland","Wroclaw"),
             MockData.CreatedMockRoot(false, "Poland","Rzeszow"),
 
 
-      };
+        };
         private static RootData[] RootDatasWithNull = new RootData[]
-  {
-            MockData.CreatedMockRoot(true, null,null),
-            MockData.CreatedMockRoot(false, null,null),
+        {
+              MockData.CreatedMockRoot(true, null,null),
+              MockData.CreatedMockRoot(true, "Poland","Gdansk"),
+              MockData.CreatedMockRoot(true, "Poland","Wroclaw"),
+              MockData.CreatedMockRoot(true, "Poland","Rzeszow"),
 
-
-      MockData.CreatedMockRoot(true, "Poland","Gdansk"),
-      MockData.CreatedMockRoot(true, "Poland","Wroclaw"),
-      MockData.CreatedMockRoot(true, "Poland","Rzeszow"),
-
-  };
+        };
         public static TodoTheoryData<Item> ItemsData { get; } = new TodoTheoryData<Item>(Items);
         public static TodoTheoryData<RootData> RootObjectItems { get; } = new TodoTheoryData<RootData>(RootDatas);
         public static TodoTheoryData<RootData> RootObjectItemsWithNull { get; } = new TodoTheoryData<RootData>(RootDatasWithNull);
@@ -39,8 +36,13 @@ namespace Backend.Test
         [InlineData(45, 7)]
         [InlineData(40, 4)]
         [InlineData(35, 1)]
-
         public void FahrenheitToCelciusTest(double f, double expected)
+        {
+            Assert.Equal(expected, (int)Weather.ToCelcius(f));
+        }
+        [Theory]
+        [ClassData(typeof(FToCTestData))]    
+        public void FahrenheitToCelciusTestOnClassData(double f, double expected)
         {
             Assert.Equal(expected, (int)Weather.ToCelcius(f));
         }
@@ -62,7 +64,6 @@ namespace Backend.Test
         {
             Assert.Throws<ConvertException>(() => Weather.Get(f));
         }
-
 
     }
 }
