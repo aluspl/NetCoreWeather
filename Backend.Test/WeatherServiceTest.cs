@@ -34,22 +34,10 @@ namespace Backend.Test
         [InlineData("Germany", "Berlin")]
         public async Task TestForNullData(string country, string city)
         {
-            WeatherService weatherService = MockData.GetService(false, country, city);
+            WeatherService weatherService = MockData.GetService(true, country, city);
 
             var response = await weatherService.GetAsync(country, city);
             Assert.Null(response);
-        }
-
-        [Theory]
-        [InlineData("Poland", "Wroclaw")]
-        [InlineData("Poland", "Gdansk")]
-        [InlineData("Germany", "Berlin")]
-        public async Task TestForThrows(string country, string city)
-        {
-            WeatherService weatherService = MockData.GetService(false, country, city);
-
-            var response = await weatherService.GetAsync(country, city);
-            await Assert.ThrowsAsync<NullReferenceException>(() => weatherService.GetAsync(country, city));
-        }
+        }     
     }
 }

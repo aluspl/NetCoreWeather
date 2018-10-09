@@ -14,7 +14,7 @@ namespace Backend.Services.Weather
             try
             {
                 if (weather == null || weather.query == null || weather.query.results == null)
-                    return null;
+                    throw new ConvertException("Missing Weather Data Data");
                 var returnWeather = new Weather();
                 if (weather.query.results.channel.location!=null)
                 {
@@ -34,19 +34,21 @@ namespace Backend.Services.Weather
             catch (Exception e)
             {
                 Debug.WriteLine(e);
-                throw;
+                throw new ConvertException("Missing Weather Data Data",e);
+
             }
         }
-        private static Temperature GetTemperature(Item item)
+        public static Temperature GetTemperature(Item item)
         {
-            if (item.forecast == null || item.forecast.Length == 0) return null;
+            if (item.forecast == null || item.forecast.Length == 0)
+                throw new ConvertException("Missing Temperature Data");
             return new Temperature
             {
                 value = ToCelcius(item.forecast[0].high),
                 format = "Celcius"
             };
         }
-        private static double ToCelcius(double f)
+        public static double ToCelcius(double f)
         {
             double c = 5.0 / 9.0 * (f - 32);
 

@@ -28,10 +28,10 @@ namespace Backend.Services.Weather
                 var weather = await WeatherAPI.GetWeatherAsync(country, city);
                 return Weather.Get(weather);
             }
-            catch (System.Exception e)
+            catch (Exception e)
             {
                 Debug.WriteLine(e);
-                throw;
+                return null;
             }
            
         }
