@@ -14,6 +14,10 @@ namespace Backend.Services.Storage
             var tableClient = storage.CreateCloudTableClient();
             var table = tableClient.GetTableReference("data");
             Task.Run(async()=> await table.CreateIfNotExistsAsync());
+            
+            var queueClient = storage.CreateCloudQueueClient();
+                        
+
         }
     }
 }
